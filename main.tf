@@ -23,8 +23,8 @@ resource "random_id" "rand_id" {
 
 locals {
   random_suffix  = random_id.rand_id.hex
-  project_name   = "playpen-${var.project_suffix}"
-  project_id     = "playpen-${var.project_suffix}"
+  project_name   = "playpen-${local.random_suffix}"
+  project_id     = "playpen-${local.random_suffix}"
   default_labels = {}
 }
 
@@ -70,8 +70,8 @@ resource "google_project_default_service_accounts" "my_project" {
 }
 
 resource "google_service_account" "sa" {
-  account_id   = "planpen-${random_suffix}-sa"
-  display_name = "Service Account for Playpen ${random_suffix}"
+  account_id   = "planpen-${local.random_suffix}-sa"
+  display_name = "Service Account for Playpen ${local.random_suffix}"
 }
 
 data "google_iam_policy" "sa_user" {
