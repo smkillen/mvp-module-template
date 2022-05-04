@@ -31,6 +31,11 @@ variable "iam_group" {
   description = "Precreated group that can act on this project"
 }
 
+variable "iam_project_role" {
+  type        = string
+  description = "The role that applied to the SA/Project"
+}
+
 variable "sleep_time" {
   type        = string
   description = "Length of time for Terraform to sleep after API enablement in the format, 30s, 10m, 1h"
