@@ -6,7 +6,6 @@ variable "billing_account_id" {
 variable "labels" {
   type        = map(string)
   description = "Optional map of label key-value pairs"
-  default     = null
 }
 
 variable "parent_folder" {
