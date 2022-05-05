@@ -13,6 +13,7 @@
  *   enabled_apis = var.input(list(string))
  *   iam_group = var.input(string)
  *   iam_project_role = var.input(string)
+ *   labels = var.input(map(string))
  *   
  * }
  * ```
