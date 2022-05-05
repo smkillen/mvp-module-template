@@ -13,6 +13,11 @@ variable "parent_folder" {
   description = "Folder ID that this project will be created in"
 }
 
+variable "project_name" {
+  type        = string
+  description = "Name to give to the project"
+}
+
 variable "project_apis" {
   type        = list(string)
   description = "Google APIs to enable on this project"
@@ -21,7 +26,7 @@ variable "project_apis" {
     "pubsub.googleapis.com",
     "storage.googleapis.com",
     "redis.googleapis.com",
-    "secretmanager.googleapi.com"
+    "secretmanager.googleapis.com"
   ]
 }
 

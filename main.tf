@@ -7,6 +7,7 @@
  *   source = "location-of-module"
  *   version = "0.1.0"
  * 
+ *   project_name = var.project_name(string)
  *   billing_account_id = var.input(string)
  *   parent_folder = var.input(string)
  *   enabled_apis = var.input(list(string))
@@ -17,19 +18,13 @@
  * ```
 **/
 
-resource "random_id" "rand_id" {
-  byte_length = 8
-}
-
 locals {
-  random_suffix  = random_id.rand_id.hex
-  project_name   = "playpen-${local.random_suffix}"
-  project_id     = "playpen-${local.random_suffix}"
+  project_id     = "lbg-${var.project-name}"
   default_labels = {}
 }
 
 resource "google_project" "proj" {
-  name                = local.project_name
+  name                = var.project_name
   project_id          = local.project_id
   auto_create_network = false
   billing_account     = var.billing_account_id
@@ -55,7 +50,7 @@ resource "time_sleep" "api_sleep_timer" {
   triggers = {
     api_list     = join(", ", var.project_apis)
     project_id   = local.project_id
-    project_name = local.project_name
+    project_name = var.project_name
   }
 
   depends_on = [
@@ -70,8 +65,8 @@ resource "google_project_default_service_accounts" "my_project" {
 }
 
 resource "google_service_account" "sa" {
-  account_id   = "planpen-${local.random_suffix}-sa"
-  display_name = "Service Account for Playpen ${local.random_suffix}"
+  account_id   = "${var.project_name}-sa"
+  display_name = "Service Account for ${var.project_name}"
 }
 
 data "google_iam_policy" "sa_user" {
