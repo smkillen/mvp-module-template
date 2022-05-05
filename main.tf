@@ -31,7 +31,7 @@ resource "google_project" "proj" {
   billing_account     = var.billing_account_id
   folder_id           = var.parent_folder
   skip_delete         = false
-  labels              = var.labels ? var.labels : local.default_labels
+  labels              = length(var.labels) > 0 ? var.labels : local.default_labels
 }
 
 resource "google_project_service" "enabled_apis" {
