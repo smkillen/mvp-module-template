@@ -20,7 +20,7 @@
 **/
 
 locals {
-  project_id     = "lbg-${var.project-name}"
+  project_id     = "lbg-${var.project_name}"
   default_labels = {}
 }
 
